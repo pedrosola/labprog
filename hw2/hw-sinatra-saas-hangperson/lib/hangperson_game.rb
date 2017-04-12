@@ -18,15 +18,18 @@ class HangpersonGame
 
   def guess (letter)
     res = (letter =~/[A-Za-z]/)
-    raise ArgumentError if letter == '' or res == nil
-    letter.downcase!
-    if not (@guesses.include? (letter) or @wrong_guesses.include? (letter))
-      if @word.include? (letter)
-        @guesses << letter
-        
-        return true
-      else
-        @wrong_guesses << letter
+    if letter == '' or res == nil
+      raise ArgumentError
+    else
+      letter.downcase!
+      if not (@guesses.include? (letter) or @wrong_guesses.include? (letter))
+        if @word.include? (letter)
+          @guesses << letter
+          
+          return true
+        else
+          @wrong_guesses << letter
+        end
       end
     end
     return false
